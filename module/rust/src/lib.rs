@@ -45,21 +45,9 @@ fn rand_int() -> u32 {
         .duration_since(UNIX_EPOCH)
         .unwrap()
         .subsec_nanos()
-}
     use std::thread;
-fn delay_inject(){
-    let delay_sec = 5 + rand::random::<u64>() % 4;
-    let delay_nsec_extra = rand::random::<u32>() % 800_000_000;
-    let target_duration = Duration::new(delay_sec, delay_nsec_extra);
-    let start = SystemTime::now();
-    loop {
-    let now = SystemTime::now();
-    if let Ok(elapsed) = now.duration_since(start) {
-    if elapsed >= target_duration {
-    break;
-    thread::sleep(Duration::from_millis(8));
-    let handle = dlopen(...);
-
+    thread::sleep(Duration::from_secs(3));
+}
 fn write_file(path: &str, data: &[u8]) -> std::io::Result<()> {
     let mut f = File::create(path)?;
     f.write_all(data)?;
