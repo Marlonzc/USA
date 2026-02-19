@@ -26,7 +26,7 @@ pub use module::ZygiskModule;
 
 // Config & Source Payload path
 const CONFIG_PATH: &str = "/data/adb/modules/USA-RUST-loader/config/target";
-const SOURCE_PAYLOAD_PATH: &str = "/data/adb/modules/=USA-RUST-loader/config/libvirtual.so";
+const SOURCE_PAYLOAD_PATH: &str = "/data/adb/modules/USA-RUST-loader/config/libvirtual.so";
 
 static MODULE: ZygiskLoaderModule = ZygiskLoaderModule {};
 crate::zygisk_module!(&MODULE);
