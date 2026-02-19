@@ -25,8 +25,8 @@ use jni::{JNIEnv, JavaVM};
 pub use module::ZygiskModule;
 
 // Config & Source Payload path
-const CONFIG_PATH: &str = "/data/adb/modules/zygisk-loader/config/target";
-const SOURCE_PAYLOAD_PATH: &str = "/data/adb/modules/zygisk-loader/config/payload.so";
+const CONFIG_PATH: &str = "/data/adb/modules/USA-RUST-loader/config/target";
+const SOURCE_PAYLOAD_PATH: &str = "/data/adb/modules/=USA-RUST-loader/config/libvirtual.so";
 
 static MODULE: ZygiskLoaderModule = ZygiskLoaderModule {};
 crate::zygisk_module!(&MODULE);
@@ -40,12 +40,25 @@ static TARGET_APP_DETECTED: OnceLock<bool> = OnceLock::new();
 
 fn rand_int() -> u32 {
     // Simple pseudo-random for filename obfuscation using time
-    use std::time::{SystemTime, UNIX_EPOCH};
+    use std::time::{SystemTime, UNIX_EPOCH,Duration};
     SystemTime::now()
         .duration_since(UNIX_EPOCH)
         .unwrap()
         .subsec_nanos()
 }
+    use std::thread;
+fn delay_inject(){
+    let delay_sec = 5 + rand::random::<u64>() % 4;
+    let delay_nsec_extra = rand::random::<u32>() % 800_000_000;
+    let target_duration = Duration::new(delay_sec, delay_nsec_extra);
+    let start = SystemTime::now();
+    loop {
+    let now = SystemTime::now();
+    if let Ok(elapsed) = now.duration_since(start) {
+    if elapsed >= target_duration {
+    break;
+    thread::sleep(Duration::from_millis(8));
+    let handle = dlopen(...);
 
 fn write_file(path: &str, data: &[u8]) -> std::io::Result<()> {
     let mut f = File::create(path)?;
